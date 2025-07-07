@@ -395,10 +395,3 @@ This note-taking application is production-ready with:
 
 This project is licensed under the MIT License.
 
----
-
-**🎉 Highway Delight Assignment - Successfully Completed!**
-
-*Built with ❤️ using React, TypeScript, Node.js, and PostgreSQL*   H i g h w a y - D e l i t e - n o t e - a p p - w i t h - G o o g l e - A u t h e n t i c a t i o n - 
- 
- 
