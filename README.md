@@ -1,63 +1,69 @@
 # 📝 Highway Delight - Note-Taking Application
 
-> A comprehensive full-stack note-taking application with multiple authentication methods, real-time email notifications, and modern responsive design.
+> A comprehensive full-stack note-taking application with Google OAuth authentication, email notifications, and modern responsive design.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)]() 
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://highwaydelitegoogleauth.netlify.app)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-blue)](https://github.com/princedabre18s/Highway-Delite-note-app-with-Google-Authentication-)
 
 ## 🚀 **Live Application**
 
-- **Frontend**: Coming Soon 🚧
-- **Backend API**: Coming Soon 🚧
-- **GitHub Repository**: [View Source Code](https://github.com/princedabre18s/Highway-Delite-note-app-with-Google-Authentication-)
+- **Frontend**: [https://highwaydelitegoogleauth.netlify.app](https://highwaydelitegoogleauth.netlify.app)
+- **Backend API**: [https://highway-delite-note-app-with-google.onrender.com](https://highway-delite-note-app-with-google.onrender.com)
+- **Repository**: [GitHub](https://github.com/princedabre18s/Highway-Delite-note-app-with-Google-Authentication-.git)
 
 ## ✨ **Key Features**
 
 🔐 **Multi-Authentication System**
 - Email/Password with OTP verification
-- Google OAuth 2.0 integration  
-- Secure password reset flow
+- Google OAuth 2.0 integration
+- Secure JWT-based sessions
+- Password reset with email verification
 
-📧 **Smart Email Notifications**
-- OTP verification & welcome emails
-- Real-time note activity notifications
-- Password reset confirmations
+📧 **Email Notifications**
+- OTP verification emails
+- Welcome & registration confirmations
+- Note activity notifications
+- Password reset emails
 
-📝 **Advanced Note Management**
-- Create, edit, delete notes with rich content
-- Search and filter functionality
-- Category organization system
+📝 **Note Management**
+- Create, edit, delete notes
+- Rich text content support
+- Search functionality
+- Responsive design
 
-🎨 **Modern User Experience**
-- Fully responsive mobile-first design
-- Toast notifications & loading states
-- Confirmation dialogs for important actions
+🔒 **Security Features**
+- Rate limiting protection
+- CORS configuration
+- Environment-based configuration
+- Secure cookie handling
 
-## �️ **Tech Stack**
+## 🛠️ **Tech Stack**
 
 | Frontend | Backend | Database & Services |
 |----------|---------|-------------------|
-| React 18 + TypeScript | Node.js + Express | PostgreSQL (Neon Cloud) |
+| React 18 + TypeScript | Node.js + Express | PostgreSQL (Neon) |
 | React Router v6 | JWT Authentication | Gmail SMTP |
 | React Hot Toast | Nodemailer | Google OAuth 2.0 |
-| Modern CSS3 | Rate Limiting | Environment Variables |
+| Axios | Rate Limiting | Netlify (Frontend) |
+| Modern CSS3 | Error Handling | Render (Backend) |
 
-## �🚀 **Quick Start**
+## 🚀 **Quick Start**
 
 ```bash
 # Clone the repository
 git clone https://github.com/princedabre18s/Highway-Delite-note-app-with-Google-Authentication-.git
 cd Highway-Delite-note-app-with-Google-Authentication-
 
-# Install dependencies
-npm install && cd client && npm install && cd ../server && npm install && cd ..
+# Setup Frontend and Backend
+cd client && npm install
+cd ../server && npm install
 
-# Set up environment variables (copy .env.example files)
+# Set up environment variables
 cp server/.env.example server/.env
 cp client/.env.example client/.env
+# Edit the .env files with your credentials
 
-# Configure your environment variables in the .env files
-# Then start the application
+# Start development servers
 npm run dev
 ```
 
@@ -65,84 +71,75 @@ npm run dev
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:5000
 
-## ⚙️ **Environment Setup**
+## ⚙️ **Environment Configuration**
 
-### � **Prerequisites**
-- Node.js (v16+)
-- Gmail account (for email features)
-- Google Cloud account (for OAuth)
+### 📋 **Prerequisites**
+- Node.js 16+
+- PostgreSQL database (Neon Cloud recommended)
+- Gmail account for email features
+- Google Cloud Console account
 
-### 🔐 **Required Environment Variables**
+### � **Environment Variables**
 
 **Backend (`server/.env`):**
 ```env
 # Database (Neon PostgreSQL)
-PGHOST=your-neon-host
+PGHOST=your-neon-host.neon.tech
 PGDATABASE=your-database
 PGUSER=your-username
 PGPASSWORD=your-password
 PGSSLMODE=require
 
-# Email Configuration
-SMTP_EMAIL=your-gmail@gmail.com
-SMTP_PASSWORD=your-gmail-app-password
+# Email (Gmail SMTP)
+SMTP_EMAIL=your-email@gmail.com
+SMTP_PASSWORD=your-app-password
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 
 # Security
 JWT_SECRET=your-secure-jwt-secret-minimum-32-chars
 CLIENT_URL=http://localhost:3000
-PORT=5000
 ```
 
 **Frontend (`client/.env`):**
 ```env
-REACT_APP_GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
 REACT_APP_API_URL=http://localhost:5000/api
+REACT_APP_GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
 ```
 
-### 🔗 **Setup Guides**
-- [📧 Gmail SMTP Setup](https://support.google.com/accounts/answer/185833)
-- [🔐 Google OAuth Setup](https://console.developers.google.com/)
-- [💾 Environment Variables Guide](#environment-setup)
+## � **Google OAuth Setup**
 
-## 🔐 Google OAuth Setup
+1. **Create Project** at [Google Cloud Console](https://console.cloud.google.com/)
+2. **Enable APIs**: Google+ API
+3. **Create Credentials**: OAuth 2.0 Client ID
+4. **Configure URLs**:
+   - **Authorized Origins**: `http://localhost:3000`, `https://highwaydelitegoogleauth.netlify.app`
+   - **Redirect URIs**: `http://localhost:3000/auth/google/callback`, `https://highwaydelitegoogleauth.netlify.app/auth/google/callback`
 
-### Step 1: Create Google Cloud Project
-1. Visit [Google Cloud Console](https://console.developers.google.com/)
-2. Create a new project or select an existing one
-3. Enable the Google+ API
+## � **Email Setup**
 
-### Step 2: Configure OAuth Credentials
-1. Navigate to **Credentials** → **Create Credentials** → **OAuth client ID**
-2. Select **Web application** as the application type
-3. Configure the following settings:
+1. **Enable 2FA** on your Gmail account
+2. **Generate App Password**: Account Settings → Security → App passwords
+3. **Use App Password** in `SMTP_PASSWORD` (not your regular password)
 
-#### For Development:
-**Authorized JavaScript Origins:**
-```
-http://localhost:3000
-http://localhost:3001
-```
+## 🌐 **Deployment**
 
-**Authorized Redirect URIs:**
-```
-http://localhost:3000/auth/google/callback
-```
+### Frontend (Netlify)
+- **Repository**: [GitHub](https://github.com/princedabre18s/Highway-Delite-note-app-with-Google-Authentication-.git)
+- **Build Command**: `npm run build`
+- **Publish Directory**: `build`
+- **Base Directory**: `client`
 
-#### 🚨 IMPORTANT: For Production Deployment
-**After deploying your app, you MUST update these settings:**
+### Backend (Render)
+- **Build Command**: `npm install; npm run build`
+- **Start Command**: `npm start`
+- **Root Directory**: `server`
 
-**Authorized JavaScript Origins (add your production URLs):**
-```
-http://localhost:3000
-https://your-app-name.vercel.app
-https://your-custom-domain.com
-```
+## 🧪 **API Testing**
 
-**Authorized Redirect URIs (add your production URLs):**
-```
-http://localhost:3000/auth/google/callback
+### Health Check
+```bash
+GET https://highway-delite-note-app-with-google.onrender.com/api/health
 https://your-app-name.vercel.app/auth/google/callback
 https://your-custom-domain.com/auth/google/callback
 ```
@@ -151,106 +148,89 @@ https://your-custom-domain.com/auth/google/callback
 1. Copy the **Client ID** from your Google OAuth credentials
 2. Add it to your `client/.env` file as `REACT_APP_GOOGLE_CLIENT_ID`
 
-### 🔄 Production Update Checklist
-
-**When you deploy to production, follow these steps:**
-
-1. **Get your production URL** (e.g., `https://highway-delight-notes.vercel.app`)
-
-2. **Update Google Cloud Console**:
-   - Go to [Google Cloud Console](https://console.developers.google.com/)
-   - Navigate to your project → **Credentials**
-   - Click on your **OAuth 2.0 Client ID**
-   - Add your production URL to both:
-     - **Authorized JavaScript origins**
-     - **Authorized redirect URIs** (with `/auth/google/callback` path)
-
-3. **Save changes** in Google Cloud Console
-
-4. **Test Google OAuth** on your production site
-
-**⚠️ Without updating these URLs, Google OAuth will show this error:**
-```
-Error 400: redirect_uri_mismatch
-The redirect URI in the request does not match the ones authorized for the OAuth client.
 ```
 
-## 📧 Email Setup (Gmail SMTP)
-
-### Step 1: Enable 2-Factor Authentication
-1. Go to your **Google Account** settings
-2. Navigate to **Security** → **2-Step Verification**
-3. Enable 2FA if not already enabled
-
-### Step 2: Generate App Password
-1. In **Security** settings, find **App passwords**
-2. Select **Mail** as the app type
-3. Generate a 16-character app password
-4. Copy this password (it will have spaces - that's normal)
-
-### Step 3: Configure Environment
-Add the following to your `server/.env` file:
-```env
-SMTP_EMAIL=your-email@gmail.com
-SMTP_PASSWORD=your-16-character-app-password
-```
-
-**📧 Email Features Included:**
-- ✅ OTP verification for registration
-- ✅ Welcome emails for new users
-- ✅ Password reset OTP emails
-- ✅ Note creation notifications
-- ✅ Note update notifications
-- ✅ Note deletion confirmations
-
-## 🚀 Usage
-
-### Starting the Application
-
+### Authentication Endpoints
 ```bash
-# Start both frontend and backend (recommended for development)
-npm run dev
-
-# Or start them separately:
-npm run client:dev   # Frontend only (http://localhost:3000)
-npm run server:dev   # Backend only (http://localhost:5000)
+POST /api/auth/register
+POST /api/auth/login
+POST /api/auth/google
+POST /api/auth/forgot-password
+POST /api/auth/reset-password
 ```
 
-### 🔧 Available Scripts
-
+### Notes Endpoints
 ```bash
-# Development
-npm run dev              # Start both frontend and backend
-npm run client:dev       # Start only frontend
-npm run server:dev       # Start only backend
-
-# Building
-npm run build           # Build both frontend and backend
-npm run client:build    # Build only frontend
-npm run server:build    # Build only backend
-
-# Production
-npm start              # Start production server
-
-# Dependencies
-npm run install:all    # Install all dependencies
+GET    /api/notes          # Get all user notes
+POST   /api/notes          # Create new note
+PUT    /api/notes/:id      # Update note
+DELETE /api/notes/:id      # Delete note
 ```
 
-### 📁 Project Structure
+## � **Features Showcase**
+
+### Authentication Flow
+1. **Registration**: Email + OTP verification
+2. **Login**: Email/password or Google OAuth
+3. **Password Reset**: Email-based OTP reset
+4. **Session Management**: JWT tokens with auto-refresh
+
+### Note Management
+1. **Create Notes**: Rich text content support
+2. **Edit Notes**: Real-time updates
+3. **Delete Notes**: Confirmation dialogs
+4. **Search**: Filter notes by content
+
+### Email Notifications
+- Welcome emails for new registrations
+- OTP codes for verification
+- Note activity updates
+- Password reset confirmations
+
+## 🏗️ **Architecture**
 
 ```
-Highway-Delite-note-app-with-Google-Authentication-/
-├── client/                 # React TypeScript frontend
-│   ├── public/            
-│   ├── src/
-│   │   ├── components/    # React components
-│   │   │   ├── auth/      # Authentication components
-│   │   │   │   ├── Login.tsx
-│   │   │   │   ├── Register.tsx
-│   │   │   │   ├── ForgotPassword.tsx
-│   │   │   │   └── GoogleSignInButton.tsx
-│   │   │   └── dashboard/ # Dashboard components
-│   │   │       ├── Dashboard.tsx
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   React Client  │◄──►│  Express API    │◄──►│   PostgreSQL    │
+│   (Netlify)     │    │   (Render)      │    │     (Neon)      │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         ▼                       ▼                       ▼
+  User Interface          Business Logic           Data Storage
+  - Authentication        - JWT Validation        - User accounts
+  - Note Management       - Email sending         - Notes data
+  - Real-time feedback    - Error handling        - Session storage
+```
+
+## 🔧 **Development**
+
+### Local Development
+```bash
+git clone https://github.com/princedabre18s/Highway-Delite-note-app-with-Google-Authentication-.git
+cd Highway-Delite-note-app-with-Google-Authentication-
+npm install && cd client && npm install && cd ../server && npm install
+```
+
+### Available Scripts
+- `npm run dev` - Start both client and server
+- `npm run build` - Build for production
+- `npm test` - Run tests
+- `npm run lint` - Check code quality
+
+## 📄 **License**
+
+This project is licensed under the MIT License.
+
+## 👨‍💻 **Developer**
+
+**Prince Dabre**
+- 📧 Email: 9809.crce@gmail.com
+- 🔗 GitHub: [@princedabre18s](https://github.com/princedabre18s)
+- 💼 Portfolio: [View Projects](https://github.com/princedabre18s)
+
+---
+
+⭐ **Star this repository if you found it helpful!**
 │   │   │       └── NoteModal.tsx
 │   │   ├── contexts/      # React contexts (AuthContext)
 │   │   ├── hooks/         # Custom hooks (useGoogleOAuth)
@@ -267,57 +247,9 @@ Highway-Delite-note-app-with-Google-Authentication-/
 │   │   ├── utils/         # Utility functions (email)
 │   │   └── index.ts       # Server entry point
 │   ├── .env.example       # Backend environment template
-│   ├── .env               # Backend environment (not committed)
-│   └── package.json
-├── .gitignore             # Git ignore file (protects .env files)
-├── package.json           # Root package.json with dev scripts
-└── README.md             # This documentation
-```
+---
 
-## 🚀 Production Environment Variables
-
-When deploying to production platforms like **Render**, **Railway**, **Vercel**, etc., you'll need to set environment variables in their dashboards:
-
-### 🌐 Backend Deployment (Render/Railway/Heroku)
-
-**Set these environment variables in your hosting platform dashboard:**
-
-```env
-# Database Configuration
-PGHOST=ep-wild-haze-a84b8udl-pooler.eastus2.azure.neon.tech
-PGDATABASE=neondb
-PGUSER=neondb_owner
-PGPASSWORD=npg_6WKBphyirEj2WKBphyirEj2
-PGSSLMODE=require
-PGCHANNELBINDING=require
-
-# Email Configuration
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_EMAIL=your-production-email@gmail.com
-SMTP_PASSWORD=your-production-app-password
-
-# Security
-JWT_SECRET=your-super-secure-production-jwt-secret-at-least-32-chars
-CLIENT_URL=https://your-frontend-domain.vercel.app
-PORT=5000
-NODE_ENV=production
-```
-
-### 🎨 Frontend Deployment (Vercel/Netlify)
-
-**Set these environment variables in your hosting platform dashboard:**
-
-```env
-REACT_APP_GOOGLE_CLIENT_ID=your-production-google-client-id.apps.googleusercontent.com
-REACT_APP_API_URL=https://your-backend-domain.railway.app/api
-```
-
-### 🔐 Why This Approach is Secure:
-
-1. **Local Development**: `.env` files are ignored by Git and stay on your machine
-2. **Repository**: Only `.env.example` template files are committed (no secrets)
-3. **Production**: Environment variables are set directly in hosting platform dashboards
+⭐ **Star this repository if you found it helpful!**
 4. **No Exposure**: Your actual secrets never appear in version control
 
 ### 🚀 Complete Production Deployment Checklist
